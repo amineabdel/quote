@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th='http://www.thymeleaf.org'>
+
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+    <script type='text/javascript' src='/js/app.js'></script>
+
+    <title>Grade a student</title>
+</head>
+
+<body>
+    <div class="card card-body bg-light">
+        <h1>eightball question</h1>
+        <br />
+
+        <form th:action='@{/question}' method='POST' onsubmit='return validate()'>
+            <div class='form-group row'>
+                <div class='col-xs-4'>
+                    <label for='question'>question : </label>
+                    <input type='text' class='form-control' name='question' id='question'>
+                </div>
+            </div>
+            <button type="SUBMIT" class="btn btn-success btn-primary btn-lg">save</button>
+            <!--<input type='SUBMIT' value='Save'>-->
+        </form>
+    </div>
+    &nbsp;&nbsp;<a href='/list'>get all questions and answers</a>
+
+</body>
+
+</html>

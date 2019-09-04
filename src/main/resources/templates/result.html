@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th='http://www.thymeleaf.org'>
+
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+
+    <title>question and answer</title>
+</head>
+
+<body>
+    <div class='card card-body bg-light'>
+        <!-- the question mark after grade ensures that it doesn't crash when grade is null -->
+        <h1>
+            <p th:text="${joke?.firstName} + ' ' + ${joke?.lastName} " /p>
+        </h1>
+    </div>
+    <div>
+        <p>this is your answer with question: </p>
+        <p th:text="${joke_text}" /p>
+    </div>
+</body>
+
+</html>
