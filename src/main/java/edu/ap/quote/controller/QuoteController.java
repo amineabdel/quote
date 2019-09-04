@@ -32,43 +32,40 @@ public class QuoteController {
 
     @GetMapping("/")
     public String index() {
+        // this.service.flushDb();
+
         return "question";
     }
 
+    // will I die?
     @PostMapping("/question")
     public String addQuestion(Model m, @RequestParam("question") String question) {
         Random generator = new Random();
         int randomIndex = generator.nextInt(answers.length);
-        // if (!this.service.exists(question)) {
-        // this.service.setKey("answer: ", answers[randomIndex] + " " + question);
-        // } else {
-        // System.out.println("question already exists?????");
-        // }
+        String rand = answers[randomIndex];
 
-        this.service.setKey("answer: ", answers[randomIndex] + " " + question);
-        // answers[randomIndex];
-        // System.out.println(question);
+        this.service.setKey("question:", question);
+        this.service.setKey("answer:", rand);
+
+        // this.service.getKey("question:")
+
+        if (this.service.exists("q")) {
+            this.service.getKey("question:q");
+            System.out.println("question bestaat al");
+
+        } else {
+            // this.service.getKey("question:");
+            this.service.setKey("question:", question + " answer: " + rand);
+            // System.out.println(this.service.getKey("question:"));
+            System.out.println("question  bestaat nog niet ");
+        }
+        this.service.setKey("question:", question + " answer: " + rand);
         return "redirect:result";
     }
 
-    @PostMapping("/author")
-    public String addAuthor(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
-            Model model) {
-
-        if (this.service.exists("authorcount")) {
-            this.service.incr("authorcount");
-        } else {
-            this.service.setKey("authorcount", "1");
-        }
-
-        this.service.setKey("author:" + firstName + lastName + ":" + this.service.getKey("authorcount"),
-                firstName + " " + lastName);
-
-        return "redirect:listauthors";
-    }
-
     @GetMapping("/result")
-    public String result() {
+    public String result(Model m) {
+        m.addAttribute("result", this.service.getKey("question:"));
         return "result";
     }
 

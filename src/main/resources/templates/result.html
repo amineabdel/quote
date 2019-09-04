@@ -12,12 +12,12 @@
     <div class='card card-body bg-light'>
         <!-- the question mark after grade ensures that it doesn't crash when grade is null -->
         <h1>
-            <p th:text="${joke?.firstName} + ' ' + ${joke?.lastName} " /p>
+            <p th:text="${result} " /p>
         </h1>
     </div>
     <div>
         <p>this is your answer with question: </p>
-        <p th:text="${joke_text}" /p>
+        <p th:text="${result}"></p>
     </div>
 </body>
 
